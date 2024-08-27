@@ -4,8 +4,8 @@ project "Sandbox"
 	cppdialect "C++17"
 	staticruntime "Off"
 
-	targetdir("bin/" ..outputDir.. "/%{prj.name}")
-	objdir("bin-int/" ..outputDir.. "/%{prj.name}")
+	targetdir("../bin/" ..outputDir.. "/%{prj.name}")
+	objdir("../bin-int/" ..outputDir.. "/%{prj.name}")
 
 	files {
 		"src/**.h",

@@ -4,8 +4,8 @@ project "Snoz"
 	cppdialect "C++17"
 	staticruntime "Off"
 
-	targetdir("bin/" ..outputDir.. "/%{prj.name}")
-	objdir("bin-int/" ..outputDir.. "/%{prj.name}")
+	targetdir("../bin/" ..outputDir.. "/%{prj.name}")
+	objdir("../bin-int/" ..outputDir.. "/%{prj.name}")
 
 	files {
 		"src/**.h",
@@ -22,6 +22,11 @@ project "Snoz"
 		defines {
 
 		}
+
+		postbuildcommands {
+		-- This copies the built Snoz.dll to the appropriate Sandbox directory
+		("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputDir .. "/Sandbox/\"")
+	}
 
 	filter "configurations:Debug"
 		runtime "Debug"
