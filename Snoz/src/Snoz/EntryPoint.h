@@ -7,10 +7,7 @@ extern Snoz::Application* Snoz::CreateApp();
 
 int main(int argc, char* argv[])
 {
-	Snoz::Log::Init();
-
-	SZ_INFO("Ready to go!");
-	SZ_APP_INFO("Hi!");
+	Snoz::Log::Init(); SZ_INFO("Loggers are initialized!");
 
 	auto app = Snoz::CreateApp();
 	app->Run();

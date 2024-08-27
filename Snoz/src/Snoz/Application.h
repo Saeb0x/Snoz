@@ -10,7 +10,7 @@ namespace Snoz
 		Application();
 		virtual ~Application() = default;
 
-		void Run();
+		virtual void Run();
 	private:
 		bool m_IsRunning;
 	};

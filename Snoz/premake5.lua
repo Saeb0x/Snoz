@@ -24,6 +24,9 @@ project "Snoz"
 		"_CRT_SECURE_NO_WARNINGS"
 	}
 
+	pchheader "szPCH.h"
+	pchsource "src/Snoz/szPCH.cpp"
+
 	filter "system:windows"
 		systemversion "latest"
 

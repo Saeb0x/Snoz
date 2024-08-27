@@ -1,3 +1,4 @@
+#include "szPCH.h"
 #include "Application.h"
 
 namespace Snoz
