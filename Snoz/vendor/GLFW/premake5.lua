@@ -1,7 +1,7 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-	staticruntime "Off"
+	staticruntime "On"
 	warnings "Off"
 
 	targetdir("../../../bin/" ..outputDir.. "/%{prj.name}")
@@ -15,7 +15,7 @@ project "GLFW"
 		"GLFW/src/init.c",
 		"GLFW/src/input.c",
 		"GLFW/src/monitor.c",
-
+		
 		"GLFW/src/null_init.c",
 		"GLFW/src/null_joystick.c",
 		"GLFW/src/null_monitor.c",

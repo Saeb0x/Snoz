@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Core.h"
+#include "Window.h"
+
+#include <memory>
 
 namespace Snoz
 {
@@ -12,7 +15,7 @@ namespace Snoz
 
 		virtual void Run();
 	private:
-		bool m_IsRunning;
+		std::unique_ptr<Window> m_Window;
 	};
 
 	// To be defined in EXTERNAL APP

@@ -3,15 +3,21 @@
 
 namespace Snoz
 {
-
-	Application::Application() :
-		m_IsRunning(true)
+	Application::Application()
 	{
-		
+		m_Window = std::make_unique<Window>(Window());
 	}
 
 	void Application::Run()
 	{
-		while (m_IsRunning);
+		m_Window->Init();
+		while (!m_Window->Closed())
+		{
+			m_Window->Clear();
+
+			// Render here
+
+			m_Window->Update();
+		}
 	}
 }
