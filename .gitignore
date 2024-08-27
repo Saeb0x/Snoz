@@ -1,6 +1,7 @@
 # Files
 *.sln
 *.vcxproj
+*.vcxproj.filters
 *.user
 
 # Directories

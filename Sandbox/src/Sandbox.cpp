@@ -1,12 +1,13 @@
-#include <iostream>
+#include <Snoz.h>
 
-namespace Snoz
+class Sandbox : public Snoz::Application
 {
-	__declspec(dllimport) void PrintHello();
-}
+public:
+	Sandbox() = default;
+	~Sandbox() override = default;
+};
 
-int main()
+Snoz::Application* Snoz::CreateApp()
 {
-	Snoz::PrintHello();
-	std::cin.get();
+	return new Sandbox;
 }

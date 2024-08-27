@@ -12,6 +12,10 @@ project "Snoz"
 		"src/**.cpp"
 	}
 
+	includedirs {
+		"src"
+	}
+
 	defines {
 		"_CRT_SECURE_NO_WARNINGS"
 	}
@@ -20,7 +24,8 @@ project "Snoz"
 		systemversion "latest"
 
 		defines {
-
+			"SZ_PLATFORM_WINDOWS",
+			"SZ_BUILD_DLL"
 		}
 
 		postbuildcommands {

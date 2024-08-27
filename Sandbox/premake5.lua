@@ -16,11 +16,15 @@ project "Sandbox"
 		"Snoz"
 	}
 
+	includedirs {
+		"../Snoz/src"
+	}
+
 	filter "system:windows"
 		systemversion "latest"
 
 		defines {
-
+			"SZ_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
