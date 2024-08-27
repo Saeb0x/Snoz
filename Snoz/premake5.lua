@@ -7,13 +7,17 @@ project "Snoz"
 	targetdir("../bin/" ..outputDir.. "/%{prj.name}")
 	objdir("../bin-int/" ..outputDir.. "/%{prj.name}")
 
+	includeDirs = {}
+	includeDirs["spdlog"] = "vendor/spdlog/include"
+
 	files {
 		"src/**.h",
 		"src/**.cpp"
 	}
 
 	includedirs {
-		"src"
+		"src",
+		"%{includeDirs.spdlog}"
 	}
 
 	defines {

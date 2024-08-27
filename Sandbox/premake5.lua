@@ -17,7 +17,8 @@ project "Sandbox"
 	}
 
 	includedirs {
-		"../Snoz/src"
+		"../Snoz/src",
+		"../Snoz/vendor/spdlog/include"
 	}
 
 	filter "system:windows"
