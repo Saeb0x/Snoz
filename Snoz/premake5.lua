@@ -9,6 +9,7 @@ project "Snoz"
 
 	includeDirs = {}
 	includeDirs["spdlog"] = "vendor/spdlog/include"
+	includeDirs["GLFW"] = "vendor/GLFW/GLFW/include"
 
 	files {
 		"src/**.h",
@@ -17,11 +18,17 @@ project "Snoz"
 
 	includedirs {
 		"src",
-		"%{includeDirs.spdlog}"
+		"%{includeDirs.spdlog}",
+		"%{includeDirs.GLFW}"
 	}
 
 	defines {
 		"_CRT_SECURE_NO_WARNINGS"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	pchheader "szPCH.h"
