@@ -10,6 +10,7 @@ project "Snoz"
 	includeDirs = {}
 	includeDirs["spdlog"] = "vendor/spdlog/include"
 	includeDirs["GLFW"] = "vendor/GLFW/GLFW/include"
+	includeDirs["GLAD"] = "vendor/GLAD/include"
 
 	files {
 		"src/**.h",
@@ -19,15 +20,18 @@ project "Snoz"
 	includedirs {
 		"src",
 		"%{includeDirs.spdlog}",
-		"%{includeDirs.GLFW}"
+		"%{includeDirs.GLFW}",
+		"%{includeDirs.GLAD}"
 	}
 
 	defines {
-		"_CRT_SECURE_NO_WARNINGS"
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
 	}
 
 	links {
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 

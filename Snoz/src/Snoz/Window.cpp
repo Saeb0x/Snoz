@@ -6,7 +6,8 @@
 #include "Log.h"
 #include "Input.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h> 
 
 namespace Snoz
 {
@@ -35,6 +36,11 @@ namespace Snoz
 			return;
 		}
 
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
 		m_Window = glfwCreateWindow((int)m_WindowProps.m_Width, (int)m_WindowProps.m_Height, m_WindowProps.m_Title.c_str(), nullptr, nullptr);
 
 		if(!m_Window)
@@ -51,6 +57,8 @@ namespace Snoz
 			glfwSwapInterval(1);
 		else
 			glfwSwapInterval(0);
+
+		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
 		// GLFW callbacks
 		glfwSetErrorCallback([](int error_code, const char* description)

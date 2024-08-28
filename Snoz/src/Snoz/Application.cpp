@@ -24,7 +24,6 @@ namespace Snoz
 			}
 
 			SZ_TRACE("Mouse Coord: {0}, {1}", Input::GetMousePosX(), Input::GetMousePosY());
-			SZ_TRACE("Mouse Scroll (vertical): {0}", Input::GetScrollY());
 
 			// Render here
 
