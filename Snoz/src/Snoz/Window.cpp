@@ -1,16 +1,15 @@
 ﻿#include "szPCH.h"
 #include "Window.h"
+
+#include <complex.h>
+
 #include "Log.h"
+#include "Input.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Snoz
 {
-	static void error_callback(int error_code, const char* description)
-	{
-		SZ_ERROR("GLFW error {0}: {1}", error_code, description);
-	}
-
 	Window::Window(const WindowProps& windowProperties) : m_WindowProps(windowProperties)
 	{
 	}
@@ -46,6 +45,7 @@ namespace Snoz
 		}
 
 		glfwMakeContextCurrent(m_Window);
+		glfwSetWindowUserPointer(m_Window, this);
 
 		if (m_WindowProps.b_IsVSync)
 			glfwSwapInterval(1);
@@ -53,7 +53,36 @@ namespace Snoz
 			glfwSwapInterval(0);
 
 		// GLFW callbacks
-		glfwSetErrorCallback(error_callback);
+		glfwSetErrorCallback([](int error_code, const char* description)
+			{
+				SZ_ERROR("GLFW error {0}: {1}", error_code, description);
+			}
+		);
+
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+			{
+				Input::m_Keys[key] = action != GLFW_RELEASE;
+			}
+		);
+
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
+			{
+				Input::m_MouseButtons[button] = action != GLFW_RELEASE;
+			}
+		);
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
+			{
+				Input::m_MouseX = xpos;
+				Input::m_MouseY = ypos;
+			}
+		);
+
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
+			{
+				Input::m_ScrollY = yoffset;
+			}
+		);
 
 		glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
 
