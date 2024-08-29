@@ -13,8 +13,8 @@ namespace Snoz
 		Application();
 		virtual ~Application() = default;
 
-		virtual void Run();
-	private:
+		virtual void Run() = 0;
+	protected:
 		std::unique_ptr<Window> m_Window;
 	};
 

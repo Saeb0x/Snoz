@@ -38,12 +38,12 @@ namespace Snoz
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 		m_Window = glfwCreateWindow((int)m_WindowProps.m_Width, (int)m_WindowProps.m_Height, m_WindowProps.m_Title.c_str(), nullptr, nullptr);
 
-		if(!m_Window)
+		if (!m_Window)
 		{
 			SZ_ERROR("Failure in creating window \"{0}\"", m_WindowProps.m_Title);
 			glfwTerminate();
@@ -89,6 +89,12 @@ namespace Snoz
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
 			{
 				Input::m_ScrollY = yoffset;
+			}
+		);
+
+		glfwSetFramebufferSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+			{
+				glViewport(0, 0, width, height);
 			}
 		);
 

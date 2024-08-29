@@ -13,7 +13,8 @@ project "Sandbox"
 	}
 
 	links {
-		"Snoz"
+		"Snoz",
+		"opengl32.lib" -- TEMP
 	}
 
 	includedirs {
