@@ -31,6 +31,7 @@ namespace Snoz
 		bool Closed();
 		void Clear();
 		void Update();
+		void Terminate();
 
 		inline std::string GetTitle() const { return m_WindowProps.m_Title; }
 		inline unsigned int GetWidth() const { return m_WindowProps.m_Width; }

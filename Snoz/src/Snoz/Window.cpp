@@ -109,6 +109,11 @@ namespace Snoz
 		glfwPollEvents();
 	}
 
+	void Window::Terminate()
+	{
+		glfwSetWindowShouldClose(m_Window, GLFW_TRUE);
+	}
+
 	void Window::Clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
