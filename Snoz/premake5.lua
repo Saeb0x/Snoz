@@ -11,6 +11,7 @@ project "Snoz"
 	includeDirs["spdlog"] = "vendor/spdlog/include"
 	includeDirs["GLFW"] = "vendor/GLFW/GLFW/include"
 	includeDirs["GLAD"] = "vendor/GLAD/include"
+	includeDirs["ImGui"] = "vendor/ImGui/ImGui"
 
 	files {
 		"src/**.h",
@@ -21,7 +22,8 @@ project "Snoz"
 		"src",
 		"%{includeDirs.spdlog}",
 		"%{includeDirs.GLFW}",
-		"%{includeDirs.GLAD}"
+		"%{includeDirs.GLAD}",
+		"%{includeDirs.ImGui}"
 	}
 
 	defines {
@@ -32,6 +34,7 @@ project "Snoz"
 	links {
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 

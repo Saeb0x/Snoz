@@ -14,6 +14,10 @@ void Sandbox::Run()
 	m_Window->Init();
 	while (!m_Window->Closed())
 	{
+		// Render here
+
+		m_Window->GetImGuiLayer().StartFrame();
+
 		m_Window->Clear();
 
 		if (Snoz::Input::IsKeyDown(SZ_KEY_ESCAPE))
@@ -21,12 +25,10 @@ void Sandbox::Run()
 			SZ_WARN("Key Escape is pressed");
 			m_Window->Terminate();
 		}
-
-		if(Snoz::Input::IsCursorIn())
+		if (Snoz::Input::IsCursorIn())
 			SZ_TRACE("Mouse Coord: {0}, {1}", Snoz::Input::GetMousePosX(), Snoz::Input::GetMousePosY());
 
-		// Render here
-
+		m_Window->GetImGuiLayer().EndFrame();
 		m_Window->Update();
 	}
 }

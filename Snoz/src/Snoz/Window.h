@@ -1,10 +1,10 @@
 ﻿#pragma once
 
 #include "Core.h"
+#include "ImGuiLayer.h"
 
 #include <string>
-
-struct GLFWwindow;
+#include <memory>
 
 namespace Snoz
 {
@@ -38,12 +38,15 @@ namespace Snoz
 		inline unsigned int GetHeight() const { return m_WindowProps.m_Height; }
 		inline bool IsVSync() const { return m_WindowProps.b_IsVSync; }
 
+		inline ImGuiLayer& GetImGuiLayer() { return *m_ImGuiLayer; }
+
 		void SetVSync(bool enabled);
 	private:
 		void Cleanup();
 	private:
 		GLFWwindow* m_Window;
 		WindowProps m_WindowProps;
+		std::shared_ptr<ImGuiLayer> m_ImGuiLayer;
 	};
 }
 

@@ -16,6 +16,7 @@ outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 group "Dependencies"
 	include "Snoz/vendor/GLFW"
 	include "Snoz/vendor/GLAD"
+	include "Snoz/vendor/ImGui"
 group ""
 
 include "Snoz"

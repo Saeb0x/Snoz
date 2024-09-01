@@ -4,3 +4,7 @@
 [submodule "Snoz/vendor/GLFW/GLFW"]
 	path = Snoz/vendor/GLFW/GLFW
 	url = https://github.com/glfw/glfw.git
+[submodule "Snoz/vendor/ImGui/ImGui"]
+	path = Snoz/vendor/ImGui/ImGui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking
