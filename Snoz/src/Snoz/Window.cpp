@@ -92,11 +92,24 @@ namespace Snoz
 			}
 		);
 
+		glfwSetCursorEnterCallback(m_Window, [](GLFWwindow* window, int entered)
+			{
+				if (entered)
+					Input::m_CursorIn = true;
+				else
+				{
+					Input::m_CursorIn = false;
+					SZ_WARN("Mouse cursor left the content area of the window");
+				}
+			}
+		);
+
 		glfwSetFramebufferSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 			{
 				glViewport(0, 0, width, height);
 			}
 		);
+
 
 		glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
 

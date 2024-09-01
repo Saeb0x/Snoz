@@ -18,6 +18,7 @@ namespace Snoz
 
 		static bool IsKeyDown(int keycode);
 		static bool IsMouseButtonDown(int mouseButton);
+		static bool IsCursorIn();
 
 		inline static double GetMousePosX() { return m_MouseX; }
 		inline static double GetMousePosY() { return m_MouseY; }
@@ -31,6 +32,7 @@ namespace Snoz
 		static double m_MouseX;
 		static double m_MouseY;
 		static double m_ScrollY;
+		static bool m_CursorIn;
 	};
 }
 

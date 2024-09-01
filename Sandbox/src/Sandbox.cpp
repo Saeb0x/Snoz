@@ -18,11 +18,12 @@ void Sandbox::Run()
 
 		if (Snoz::Input::IsKeyDown(SZ_KEY_ESCAPE))
 		{
-			SZ_TRACE("Key Escape is pressed");
+			SZ_WARN("Key Escape is pressed");
 			m_Window->Terminate();
 		}
 
-		SZ_TRACE("Mouse Coord: {0}, {1}", Snoz::Input::GetMousePosX(), Snoz::Input::GetMousePosY());
+		if(Snoz::Input::IsCursorIn())
+			SZ_TRACE("Mouse Coord: {0}, {1}", Snoz::Input::GetMousePosX(), Snoz::Input::GetMousePosY());
 
 		// Render here
 

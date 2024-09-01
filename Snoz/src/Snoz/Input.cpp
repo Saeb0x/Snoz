@@ -10,6 +10,7 @@ namespace Snoz
 	double Input::m_MouseX = 0.0;
 	double Input::m_MouseY = 0.0;
 	double Input::m_ScrollY = 0.0;
+	bool Input::m_CursorIn = false;
 
 	bool Input::IsKeyDown(int keycode)
 	{
@@ -31,5 +32,10 @@ namespace Snoz
 		}
 
 		return m_MouseButtons[mouseButton];
+	}
+
+	bool Input::IsCursorIn()
+	{
+		return m_CursorIn;
 	}
 }
