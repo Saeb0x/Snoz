@@ -13,9 +13,10 @@ namespace Snoz
 		~ImGuiLayer();
 
 		void Init(GLFWwindow* window);
+		void OnImGuiRender();
 
-		void StartFrame();
-		void EndFrame();
+		void Begin();
+		void End();
 	};
 
 }

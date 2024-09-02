@@ -15,8 +15,8 @@ void Sandbox::Run()
 	while (!m_Window->Closed())
 	{
 		// Render here
-
-		m_Window->GetImGuiLayer().StartFrame();
+		m_Window->GetImGuiLayer().Begin();
+		m_Window->GetImGuiLayer().OnImGuiRender();
 
 		m_Window->Clear();
 
@@ -28,7 +28,7 @@ void Sandbox::Run()
 		if (Snoz::Input::IsCursorIn())
 			SZ_TRACE("Mouse Coord: {0}, {1}", Snoz::Input::GetMousePosX(), Snoz::Input::GetMousePosY());
 
-		m_Window->GetImGuiLayer().EndFrame();
+		m_Window->GetImGuiLayer().End();
 		m_Window->Update();
 	}
 }

@@ -108,10 +108,9 @@ namespace Snoz
 			}
 		);
 
-		glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
-
 		m_ImGuiLayer->Init(m_Window);
 
+		glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
 		SZ_INFO("Window is successfully initialized and created");
 	}
 
