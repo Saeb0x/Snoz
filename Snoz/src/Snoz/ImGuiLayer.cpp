@@ -3,23 +3,17 @@
 
 #include <backends/imgui_impl_opengl3.h>
 #include <backends/imgui_impl_glfw.h>
-
 #include <GLFW/glfw3.h>
+
+#include "Application.h"
 
 namespace Snoz
 {
-	ImGuiLayer::ImGuiLayer()
+	ImGuiLayer::ImGuiLayer() : Layer("ImGui")
 	{
 	}
 
-	ImGuiLayer::~ImGuiLayer()
-	{
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-	}
-
-	void ImGuiLayer::Init(GLFWwindow* window)
+	void ImGuiLayer::OnAttach()
 	{
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
@@ -41,14 +35,25 @@ namespace Snoz
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 
+		Application* app = Application::GetInstance();
+		GLFWwindow* win = app->GetWindow().GetNativeWindow();
+
 		// Setup backends
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
+		ImGui_ImplGlfw_InitForOpenGL(win, true);
 		ImGui_ImplOpenGL3_Init("#version 460");
+	}
+
+	void ImGuiLayer::OnDetach()
+	{
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
 	}
 
 	void ImGuiLayer::OnImGuiRender()
 	{
-		ImGui::ShowDemoWindow();
+		static bool status = true;
+		ImGui::ShowDemoWindow(&status);
 	}
 
 	void ImGuiLayer::Begin()

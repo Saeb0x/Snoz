@@ -1,19 +1,22 @@
 ﻿#pragma once
 
 #include "Core.h"
+#include "Layer.h"
 
 struct GLFWwindow;
 
 namespace Snoz
 {
-	class SZ_API ImGuiLayer
+	class SZ_API ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
-		~ImGuiLayer();
+		~ImGuiLayer() = default;
 
-		void Init(GLFWwindow* window);
-		void OnImGuiRender();
+		void OnAttach() override;
+		void OnDetach() override;
+
+		void OnImGuiRender() override;
 
 		void Begin();
 		void End();
