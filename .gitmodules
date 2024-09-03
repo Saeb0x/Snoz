@@ -8,3 +8,6 @@
 	path = Snoz/vendor/ImGui/ImGui
 	url = https://github.com/ocornut/imgui.git
 	branch = docking
+[submodule "Snoz/vendor/GLM"]
+	path = Snoz/vendor/GLM
+	url = https://github.com/g-truc/glm.git

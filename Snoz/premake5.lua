@@ -12,6 +12,7 @@ project "Snoz"
 	includeDirs["GLFW"] = "vendor/GLFW/GLFW/include"
 	includeDirs["GLAD"] = "vendor/GLAD/include"
 	includeDirs["ImGui"] = "vendor/ImGui/ImGui"
+	includeDirs["GLM"] = "vendor/GLM"
 
 	files {
 		"src/**.h",
@@ -23,7 +24,8 @@ project "Snoz"
 		"%{includeDirs.spdlog}",
 		"%{includeDirs.GLFW}",
 		"%{includeDirs.GLAD}",
-		"%{includeDirs.ImGui}"
+		"%{includeDirs.ImGui}",
+		"%{includeDirs.GLM}"
 	}
 
 	defines {
