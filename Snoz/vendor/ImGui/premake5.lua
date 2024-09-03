@@ -20,14 +20,13 @@ project "ImGui"
 		}
 
 	filter "configurations:Debug"
-	runtime "Debug"
-	symbols "On"
+		runtime "Debug"
+		symbols "On"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "Speed"
+		optimize "On"
 
 	filter "configurations:Dist"
 		runtime "Release"
-		optimize "Speed"
-		symbols "Off"
+		optimize "On"

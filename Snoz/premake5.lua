@@ -1,8 +1,8 @@
 project "Snoz"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "Off"
+	staticruntime "On"
 
 	targetdir("../bin/" ..outputDir.. "/%{prj.name}")
 	objdir("../bin-int/" ..outputDir.. "/%{prj.name}")
@@ -49,20 +49,14 @@ project "Snoz"
 			"SZ_BUILD_DLL"
 		}
 
-		postbuildcommands {
-		-- This copies the built Snoz.dll to the appropriate Sandbox directory
-		("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputDir .. "/Sandbox/\"")
-	}
-
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "Speed"
+		optimize "On"
 
 	filter "configurations:Dist"
 		runtime "Release"
-		optimize "Speed"
-		symbols "Off"
+		optimize "On"

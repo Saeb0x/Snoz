@@ -13,13 +13,13 @@ workspace "Snoz"
 
 outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+include "Snoz"
+
 group "Dependencies"
 	include "Snoz/vendor/GLFW"
 	include "Snoz/vendor/GLAD"
 	include "Snoz/vendor/ImGui"
 group ""
-
-include "Snoz"
 
 group "Examples"
 	include "Sandbox"

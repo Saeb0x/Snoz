@@ -2,7 +2,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "Off"
+	staticruntime "On"
 
 	targetdir("../bin/" ..outputDir.. "/%{prj.name}")
 	objdir("../bin-int/" ..outputDir.. "/%{prj.name}")
@@ -34,9 +34,8 @@ project "Sandbox"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "Speed"
+		optimize "On"
 
 	filter "configurations:Dist"
 		runtime "Release"
-		optimize "Speed"
-		symbols "Off"
+		optimize "On"

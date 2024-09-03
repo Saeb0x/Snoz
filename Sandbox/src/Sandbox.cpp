@@ -7,7 +7,6 @@ public:
 	~Sandbox() override = default;
 };
 
-
 Snoz::Application* Snoz::CreateApp()
 {
 	return new Sandbox;
