@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Core.h"
+#include "Renderer/Context.h"
 
 #include <string>
 #include <memory>
@@ -46,6 +47,7 @@ namespace Snoz
 		void Cleanup();
 	private:
 		GLFWwindow* m_Window;
+		Context* m_GraphicsContext;
 		WindowProps m_WindowProps;
 	};
 }

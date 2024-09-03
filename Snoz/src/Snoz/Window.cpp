@@ -3,9 +3,10 @@
 
 #include "Log.h"
 #include "Input.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
+#include <GLFW/glfw3.h>
 #include <glad/glad.h>
-#include <GLFW/glfw3.h> 
 
 namespace Snoz
 {
@@ -37,7 +38,7 @@ namespace Snoz
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
 
 		m_Window = glfwCreateWindow((int)m_WindowProps.m_Width, (int)m_WindowProps.m_Height, m_WindowProps.m_Title.c_str(), nullptr, nullptr);
 
@@ -48,15 +49,15 @@ namespace Snoz
 			return;
 		}
 
-		glfwMakeContextCurrent(m_Window);
+		m_GraphicsContext = new OpenGLContext(m_Window);
+		m_GraphicsContext->Init();
+
 		glfwSetWindowUserPointer(m_Window, this);
 
 		if (m_WindowProps.b_IsVSync)
 			glfwSwapInterval(1);
 		else
 			glfwSwapInterval(0);
-
-		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
 		// GLFW callbacks
 		glfwSetErrorCallback([](int error_code, const char* description)
@@ -115,7 +116,7 @@ namespace Snoz
 
 	void Window::Update()
 	{
-		glfwSwapBuffers(m_Window);
+		m_GraphicsContext->SwapBuffers();
 		glfwPollEvents();
 	}
 

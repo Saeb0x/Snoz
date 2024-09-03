@@ -13,3 +13,5 @@
 #else
 	#error Snoz only supports Windows for now!
 #endif
+
+#define SZ_ASSERT(x, ...) if(!(x)) {SZ_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak();}

@@ -1,5 +1,6 @@
 ﻿#include "szPCH.h"
 #include "ImGuiLayer.h"
+#include "Log.h"
 
 #include <backends/imgui_impl_opengl3.h>
 #include <backends/imgui_impl_glfw.h>
@@ -36,6 +37,7 @@ namespace Snoz
 		}
 
 		Application* app = Application::GetInstance();
+		SZ_ASSERT(fmt::ptr(app), "App is null!");
 		GLFWwindow* win = app->GetWindow().GetNativeWindow();
 
 		// Setup backends
