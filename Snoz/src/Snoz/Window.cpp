@@ -36,7 +36,7 @@ namespace Snoz
 		}
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
 
@@ -48,6 +48,7 @@ namespace Snoz
 			glfwTerminate();
 			return;
 		}
+		SZ_INFO("Window is successfully initialized and created");
 
 		m_GraphicsContext = new OpenGLContext(m_Window);
 		m_GraphicsContext->Init();
@@ -98,7 +99,6 @@ namespace Snoz
 				else
 				{
 					Input::m_CursorIn = false;
-					SZ_WARN("Mouse cursor left the content area of the window");
 				}
 			}
 		);
@@ -108,10 +108,6 @@ namespace Snoz
 				glViewport(0, 0, width, height);
 			}
 		);
-
-		glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
-
-		SZ_INFO("Window is successfully initialized and created");
 	}
 
 	void Window::Update()
