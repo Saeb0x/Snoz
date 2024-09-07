@@ -19,8 +19,9 @@ namespace Snoz
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		SZ_ASSERT(status, "GLAD initialization failed");
 
-		SZ_INFO("OpenGL Context Info:");
-		SZ_INFO("	Vendor & Renderer: {0}", (const char*)glGetString(GL_RENDERER));
+		SZ_INFO("OpenGL Info:");
+		SZ_INFO("	Vendor: {0}", (const char*)glGetString(GL_VENDOR));
+		SZ_INFO("	Renderer: {0}", (const char*)glGetString(GL_RENDERER));
 		SZ_INFO("	Version: {0}", (const char*)glGetString(GL_VERSION));
 	}
 

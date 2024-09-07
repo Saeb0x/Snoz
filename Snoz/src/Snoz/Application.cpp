@@ -42,11 +42,36 @@ namespace Snoz
 		glGenBuffers(1, &m_IndexBuffer);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
 
-		float indices[3] =
+		unsigned int indices[3] =
 		{
 			0, 1, 2
 		};
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+
+		std::string vertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;			
+
+			void main()
+			{
+				gl_Position = vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string fragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 Color;			
+
+			void main()
+			{
+				Color = vec4(0.2, 0.2, 0.2, 1.0);
+			}
+		)";
+
+		m_ShaderProg.reset(new Shader(vertexSrc, fragmentSrc));
 	}
 
 	void Application::Run()
@@ -56,6 +81,15 @@ namespace Snoz
 		{
 			// Render here
 			m_Window->Clear();
+
+			m_ShaderProg->Bind();
+			glBindVertexArray(m_VertexArray);
+			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack.GetLayers())
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			if (Snoz::Input::IsKeyDown(SZ_KEY_ESCAPE))
 			{
@@ -70,13 +104,6 @@ namespace Snoz
 			{
 				layer->OnUpdate();
 			}
-
-			m_ImGuiLayer->Begin();
-			m_ImGuiLayer->OnImGuiRender();
-			m_ImGuiLayer->End();
-
-			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
 			m_Window->Update();
 		}
