@@ -34,7 +34,6 @@ namespace Snoz
 
 			return;
 		}
-		SZ_INFO("Vertex shader is successfully compiled");
 
 		// Fragment
 		GLuint fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -61,7 +60,7 @@ namespace Snoz
 
 			return;
 		}
-		SZ_INFO("Fragment shader is successfully compiled");
+		SZ_INFO("Vertex and Fragment shaders are successfully compiled");
 
 		// Program
 		m_ShaderProgID = glCreateProgram();
