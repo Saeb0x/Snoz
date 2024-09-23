@@ -20,19 +20,24 @@ namespace Snoz
 		PushOverlay(m_ImGuiLayer);
 
 		// Vertex Array
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
+		m_VertexArray = std::make_unique<VertexArray>(VertexArray());
 
-		float vertices[3 * 3] =
+		float vertices[5 * 3] =
 		{
-			-0.5f, 0.0f, 0.0f,
-			0.0f, 0.5f, 0.0f,
-			0.5f, 0.0f, 0.0f
+			// VA1: Coords		// VA2: Color
+			-0.5f, -0.5f,		1.0f, 0.0f, 0.0f,
+			 0.0f,  0.5f,		0.0f, 1.0f, 0.0f,
+			 0.5f, -0.5f,		0.0f, 0.0f, 1.0f
 		};
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+		// Vertex Buffer Layout
+		m_BufferLayout = std::make_unique<VertexBufferLayout>(VertexBufferLayout());
+		m_BufferLayout->Push<float>(2);
+		m_BufferLayout->Push<float>(3);
+
+		// Binding each vertex buffer with its layout
+		m_VertexArray->AddBuffer(*m_VertexBuffer, *m_BufferLayout);
 
 		unsigned int indices[3] =
 		{
@@ -44,25 +49,26 @@ namespace Snoz
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
-			
-			out vec3 v_Position;
+			layout(location = 1) in vec3 a_Color;
 
+			out vec3 v_Color;
+			
 			void main()
 			{
-				v_Position = a_Position;
-				gl_Position = vec4(a_Position - 0.3, 1.0);
+				v_Color = a_Color;
+				gl_Position = vec4(a_Position, 1.0);
 			}
 		)";
 
 		std::string fragmentSrc = R"(
 			#version 330 core
 			
+			in vec3 v_Color;
 			out vec4 color;
-			in vec3 v_Position;
 
 			void main()
 			{
-				color = vec4(v_Position + 0.3,1.0);
+				color = vec4(v_Color,1.0);
 			}
 		)";
 
@@ -78,7 +84,7 @@ namespace Snoz
 			m_Window->Clear();
 
 			m_ShaderProg->Bind();
-			glBindVertexArray(m_VertexArray);
+			m_VertexArray->Bind();
 			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			m_ImGuiLayer->Begin();

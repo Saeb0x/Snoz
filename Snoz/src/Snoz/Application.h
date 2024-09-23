@@ -5,7 +5,7 @@
 #include "ImGuiLayer.h"
 #include "LayerStack.h"
 #include "Snoz/Platform/OpenGL/Shader.h"
-#include "Renderer/Buffer.h"
+#include "Snoz/Platform/OpenGL/VertexArray.h"
 
 #include <memory>
 
@@ -33,10 +33,11 @@ namespace Snoz
 
 		static Application* s_Instance;
 
-		unsigned int m_VertexArray;
+		std::unique_ptr<VertexArray> m_VertexArray;
 		std::unique_ptr<Shader> m_ShaderProg;
 		std::unique_ptr<VertexBuffer> m_VertexBuffer;
 		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::unique_ptr<VertexBufferLayout> m_BufferLayout;
 	};
 
 	// To be defined in EXTERNAL APP

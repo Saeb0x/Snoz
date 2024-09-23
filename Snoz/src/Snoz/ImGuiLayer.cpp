@@ -5,6 +5,7 @@
 #include <backends/imgui_impl_opengl3.h>
 #include <backends/imgui_impl_glfw.h>
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 #include "Application.h"
 
@@ -56,6 +57,12 @@ namespace Snoz
 	{
 		static bool status = true;
 		ImGui::ShowDemoWindow(&status);
+
+		ImGui::Begin("Renderer");
+		ImGui::Text("Vendor: %s", glGetString(GL_VENDOR));
+		ImGui::Text("Renderer: %s", glGetString(GL_RENDERER));
+		ImGui::Text("Version: %s", glGetString(GL_VERSION));
+		ImGui::End();
 	}
 
 	void ImGuiLayer::Begin()

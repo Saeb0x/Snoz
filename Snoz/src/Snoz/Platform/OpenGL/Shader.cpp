@@ -60,7 +60,6 @@ namespace Snoz
 
 			return;
 		}
-		SZ_INFO("Vertex and Fragment shaders are successfully compiled");
 
 		// Program
 		m_ShaderProgID = glCreateProgram();
@@ -96,7 +95,7 @@ namespace Snoz
 		glDetachShader(m_ShaderProgID, vertexShaderID);
 		glDetachShader(m_ShaderProgID, fragmentShaderID);
 
-		SZ_INFO("Shader program is successfully linked");
+		SZ_INFO("Shaders are successfully compiled and program is linked");
 	}
 
 	Shader::~Shader()
